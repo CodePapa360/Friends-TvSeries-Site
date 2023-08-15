@@ -1,0 +1,68 @@
+:root {
+  --clr-bg-secondary: #131314;
+  --clr-bg-primary: #000000;
+  --clr-light-gray: #222327;
+  --clr-primary: #07b1e5;
+  --clr-white: white;
+}
+
+$bp-small: 576px;
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  font-family: "Poppins", sans-serif;
+  background-color: var(--clr-bg-primary);
+  color: var(--clr-white);
+}
+
+.container {
+  margin: auto;
+  max-width: 1440px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.footer {
+  margin-top: auto;
+}
+
+//
+// ::selection {
+//   background-color: var(--light-blue);
+//   color: var(--white);
+// }
+
+// /* Works on Firefox */
+// * {
+//   scrollbar-width: thin;
+//   scrollbar-color: var(--light-blue) var(--bg-light-grayish-cyan);
+// }
+
+// /* Works on Chrome, Edge, and Safari */
+// *::-webkit-scrollbar {
+//   width: 12px;
+// }
+
+// *::-webkit-scrollbar-track {
+//   background: var(--bg-light-grayish-cyan);
+//   width: 12px;
+// }
+
+// *::-webkit-scrollbar-thumb {
+//   background-color: var(--light-blue);
+//   border-radius: 20px;
+//   border: 3px solid var(--bg-light-grayish-cyan);
+// }
+

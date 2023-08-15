@@ -1,0 +1,96 @@
+.header {
+  background-color: var(--clr-bg-secondary);
+  border-radius: 0 0 15px 15px;
+
+  .header-contents {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    position: relative;
+
+    @media screen and (min-width: $bp-small) {
+      padding: 1rem 2rem;
+    }
+
+    .logo {
+      max-width: 8rem;
+    }
+
+    .hamburger-menu {
+      height: auto;
+      width: 2rem;
+      cursor: pointer;
+
+      @media screen and (min-width: $bp-small) {
+        display: none;
+      }
+
+      img {
+        filter: invert(90%);
+      }
+    }
+
+    .nav {
+      display: none;
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 100vw;
+      z-index: 18;
+
+      @media screen and (min-width: $bp-small) {
+        display: block;
+        position: relative;
+      }
+
+      .nav-links {
+        background-color: var(--clr-light-gray);
+        height: 100%;
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 1rem;
+
+        @media screen and (min-width: $bp-small) {
+          background-color: transparent;
+          flex-direction: row;
+          padding: 0;
+          gap: 2rem;
+        }
+
+        .nav-link {
+          color: var(--clr-white);
+        }
+
+        #seasons {
+          background-color: var(--clr-light-gray);
+          border: none;
+          color: var(--clr-white);
+          padding: 0;
+
+          @media screen and (min-width: $bp-small) {
+            background-color: var(--clr-bg-secondary);
+          }
+        }
+      }
+    }
+
+    .nav.open {
+      display: block;
+    }
+  }
+}
+
+.overlay {
+  background-color: rgba(0, 0, 0, 0.4);
+  height: 100vh;
+  width: 100vw;
+  z-index: 10;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: none;
+}

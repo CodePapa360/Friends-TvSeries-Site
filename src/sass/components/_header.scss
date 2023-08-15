@@ -32,22 +32,40 @@
     }
 
     .nav {
-      display: none;
+      //   display: none;
       position: fixed;
       top: 0;
       right: 0;
       width: 100vw;
       z-index: 18;
+      overflow: hidden;
+      transition: all 0.2s ease;
+
+      transform: translateY(-100%);
 
       @media screen and (min-width: $bp-small) {
         display: block;
         position: relative;
       }
 
+      .close-menu {
+        height: 2rem;
+        width: 2rem;
+        filter: invert(90%);
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        cursor: pointer;
+
+        @media screen and (min-width: $bp-small) {
+          display: none;
+        }
+      }
+
       .nav-links {
         background-color: var(--clr-light-gray);
         height: 100%;
-        padding: 2rem;
+        padding: 3.5rem 2rem 2rem;
         display: flex;
         flex-direction: column;
         justify-content: flex-end;
@@ -70,6 +88,7 @@
           border: none;
           color: var(--clr-white);
           padding: 0;
+          cursor: pointer;
 
           @media screen and (min-width: $bp-small) {
             background-color: var(--clr-bg-secondary);
@@ -79,7 +98,7 @@
     }
 
     .nav.open {
-      display: block;
+      transform: translateY(0%);
     }
   }
 }
@@ -92,5 +111,15 @@
   position: fixed;
   top: 0;
   left: 0;
-  display: none;
+  transition: all 0.2s ease;
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.overlay.open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: all;
 }

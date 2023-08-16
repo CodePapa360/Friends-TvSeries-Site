@@ -18,9 +18,10 @@
     }
 
     .hamburger-menu {
-      height: auto;
+      height: 2rem;
       width: 2rem;
       cursor: pointer;
+      z-index: 20;
 
       @media screen and (min-width: $bp-small) {
         display: none;
@@ -32,7 +33,6 @@
     }
 
     .nav {
-      //   display: none;
       position: fixed;
       top: 0;
       right: 0;
@@ -46,6 +46,7 @@
       @media screen and (min-width: $bp-small) {
         display: block;
         position: relative;
+        transform: translateY(0);
       }
 
       .close-menu {
@@ -83,12 +84,13 @@
           color: var(--clr-white);
         }
 
-        #seasons {
+        #season-nav {
           background-color: var(--clr-light-gray);
           border: none;
           color: var(--clr-white);
           padding: 0;
           cursor: pointer;
+          outline: none;
 
           @media screen and (min-width: $bp-small) {
             background-color: var(--clr-bg-secondary);
@@ -99,6 +101,10 @@
 
     .nav.open {
       transform: translateY(0%);
+    }
+
+    .nav.open ~ .hamburger-menu img {
+      content: url(../../public/images/circle-xmark-regular.svg);
     }
   }
 }

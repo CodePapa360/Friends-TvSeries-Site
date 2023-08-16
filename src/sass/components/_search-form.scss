@@ -1,0 +1,34 @@
+.search-form {
+  padding: 1rem;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  .form-sections {
+    display: flex;
+    gap: 1rem;
+    padding: 0.5rem;
+    background-color: var(--clr-light-gray);
+    border-radius: 1000px;
+
+    .form-section {
+      color: var(--clr-white);
+      background-color: var(--clr-bg-secondary);
+      border: none;
+      border-radius: 500px;
+      padding: 0.5rem;
+      outline: none;
+      cursor: pointer;
+    }
+  }
+
+  .submit-btn {
+    padding: 0.5rem 1.5rem;
+    background-color: var(--clr-primary);
+    border: none;
+    color: var(--clr-white);
+    border-radius: 9999px;
+    cursor: pointer;
+  }
+}

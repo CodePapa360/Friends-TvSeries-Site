@@ -82,6 +82,11 @@
 
         .nav-link {
           color: var(--clr-white);
+          transition: opacity 0.2s ease;
+
+          &:hover {
+            opacity: 0.7;
+          }
         }
 
         #season-nav {
@@ -104,7 +109,7 @@
     }
 
     .nav.open ~ .hamburger-menu img {
-      content: url(../../public/images/circle-xmark-regular.svg);
+      content: url(../../images/circle-xmark-regular.svg);
     }
   }
 }

@@ -1,9 +1,9 @@
-.season-cards {
+.episode-cards {
   display: grid;
   grid-gap: 1rem;
   justify-content: center;
   align-content: center;
-  grid-template-columns: repeat(auto-fit, minmax(9rem, auto));
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 20rem));
   gap: 1rem;
   padding: 1rem;
 
@@ -45,8 +45,14 @@
 
       .title {
         font-weight: 700;
-        font-size: 1.5rem;
+        font-size: 1.1rem;
+        margin-bottom: 1rem;
         transition: color 0.2s ease;
+      }
+
+      .title-secondary {
+        font-size: 1rem;
+        font-weight: normal;
       }
 
       .release-date {

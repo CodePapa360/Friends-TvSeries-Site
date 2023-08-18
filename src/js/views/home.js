@@ -7,7 +7,7 @@ export default function (data) {
                 <a href="#season/${i + 1}" class="season-cards__card">
                 <div class="card-contents">
                     <div class="thumbnail">
-                    <img src="./public/thumbnails/seasons/season-${
+                    <img src="./thumbnails/seasons/season-${
                       i + 1
                     }.jpg" alt="Season ${i + 1}" />
                     </div>

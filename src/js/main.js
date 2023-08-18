@@ -1,6 +1,6 @@
 import jsonData from "../data/allData.json";
-
 import home from "./views/homeView";
+import episodeView from "./views/episodeView";
 
 const navMenu = document.querySelector(".nav");
 const btnMenu = document.querySelector(".hamburger-menu");
@@ -38,11 +38,11 @@ function renderHome() {
 // Function to render a season page
 function renderSeason(seasonId) {
   // Fetch and render data for the selected season
-  const data = `<h2>Season ${seasonId}</h2>`;
+  const targetSeason = jsonData.find((season) => season.season === +seasonId);
+
+  const data = episodeView(targetSeason);
 
   renderContent(data);
-
-  // ... Fetch and render season data ...
 }
 
 // Function to render an episode page

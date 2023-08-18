@@ -38,6 +38,11 @@ body {
   margin-top: auto;
 }
 
+#App {
+  opacity: 1;
+  transition: opacity 0.1s ease;
+}
+
 //
 // ::selection {
 //   background-color: var(--light-blue);

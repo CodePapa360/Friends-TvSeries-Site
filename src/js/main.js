@@ -1,15 +1,6 @@
-import season1 from "../data/season-1.json";
-import season2 from "../data/season-2.json";
-import season3 from "../data/season-3.json";
-import season4 from "../data/season-4.json";
-import season5 from "../data/season-5.json";
-import season6 from "../data/season-6.json";
-import season7 from "../data/season-7.json";
-import season8 from "../data/season-8.json";
-import season9 from "../data/season-9.json";
-import season10 from "../data/season-10.json";
+import jsonData from "../data/allData.json";
 
-import home from "./views/home";
+import home from "./views/homeView";
 
 const navMenu = document.querySelector(".nav");
 const btnMenu = document.querySelector(".hamburger-menu");
@@ -28,12 +19,51 @@ const overlay = document.querySelector(".overlay");
 // Get the content container element where views will be rendered
 const container = document.getElementById("App");
 
+function renderContent(data) {
+  container.style.opacity = "0";
+
+  setTimeout(() => {
+    container.innerHTML = data;
+    container.style.opacity = "1";
+  }, 100);
+}
+
+// Function to render the home page
+function renderHome() {
+  const data = home(jsonData);
+
+  renderContent(data);
+}
+
+// Function to render a season page
+function renderSeason(seasonId) {
+  // Fetch and render data for the selected season
+  const data = `<h2>Season ${seasonId}</h2>`;
+
+  renderContent(data);
+
+  // ... Fetch and render season data ...
+}
+
+// Function to render an episode page
+function renderEpisode(seasonId, episodeId) {
+  // Fetch and render data for the selected episode
+  container.innerHTML = `<h3>Season ${seasonId}, Episode ${episodeId}</h3>`;
+  // ... Fetch and render episode data ...
+}
+
+// Function to render a not found page
+function renderNotFound() {
+  container.innerHTML = "<p>Page not found.</p>";
+}
+
 // Define a routing function
 function route(path) {
   // Remove the leading "/" and split the path into segments
   const segments = path.slice(1).split("/");
 
   // Get the first segment to determine the route
+  // eslint-disable-next-line no-shadow
   const route = segments[0];
 
   // Clear the content container
@@ -54,31 +84,6 @@ function route(path) {
   }
 }
 
-// Function to render the home page
-function renderHome() {
-  container.innerHTML = home();
-  // container.innerHTML = "<h1>Welcome to the Home Page</h1>";
-}
-
-// Function to render a season page
-function renderSeason(seasonId) {
-  // Fetch and render data for the selected season
-  container.innerHTML = `<h2>Season ${seasonId}</h2>`;
-  // ... Fetch and render season data ...
-}
-
-// Function to render an episode page
-function renderEpisode(seasonId, episodeId) {
-  // Fetch and render data for the selected episode
-  container.innerHTML = `<h3>Season ${seasonId}, Episode ${episodeId}</h3>`;
-  // ... Fetch and render episode data ...
-}
-
-// Function to render a not found page
-function renderNotFound() {
-  container.innerHTML = "<p>Page not found.</p>";
-}
-
 // Initial setup: Call the route function when the page loads
 window.addEventListener("load", () => {
   route(window.location.pathname);
@@ -92,6 +97,7 @@ window.addEventListener("popstate", () => {
 // Function to find the closest ancestor anchor element
 function findAnchor(element) {
   while (element && element.tagName !== "A") {
+    // eslint-disable-next-line no-param-reassign
     element = element.parentElement;
   }
   return element;
@@ -105,6 +111,7 @@ function handleAnchorClick(event) {
     event.preventDefault(); // Prevent the default link behavior
     const href = anchor.getAttribute("href"); // Get the href attribute
     // Use either pushState or replaceState to update the history
+    // eslint-disable-next-line no-restricted-globals
     history.pushState(null, "", href);
     route(href); // Handle the navigation using your routing system
   }

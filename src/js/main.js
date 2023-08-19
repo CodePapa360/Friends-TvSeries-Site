@@ -1,7 +1,9 @@
 /* eslint-disable no-restricted-globals */
 import jsonData from "../data/allData.json";
+import jsonVideoUrls from "../data/videoUrls.json";
 import home from "./views/homeView";
 import episodeView from "./views/episodeView";
+import videoView from "./views/videoView";
 
 const navMenu = document.querySelector(".nav");
 const btnMenu = document.querySelector(".hamburger-menu");
@@ -32,13 +34,17 @@ function getPlaceData(place) {
       const targetSeason = jsonData.find((sea) => sea.season === +seasonNum[0]);
 
       if (episodeNum && +episodeNum[0] <= targetSeason.episodes.length) {
-        return `
-        <video controls>
-        <source src="https://www.didi2.ir/bestsitcomdl/Friends/s01/Friends.S01E05.720p.BluRay.SoftSub.bestsitcom.mkv" type="video/mp4">
-        Your browser does not support the video tag.
-      </video> 
-        
-        `;
+        const targetSeasonUrl = jsonVideoUrls.find(
+          (sea) => sea.season === +seasonNum[0],
+        );
+
+        console.log(targetSeasonUrl);
+
+        const targetEpisodeUrl = targetSeasonUrl.episodes.find(
+          (ep) => ep.episode === +episodeNum[0],
+        );
+
+        return videoView(targetEpisodeUrl.link);
       }
     }
 
@@ -69,7 +75,7 @@ function updateLayout(place) {
   setTimeout(() => {
     container.innerHTML = data;
     container.style.opacity = "1";
-  }, 10000);
+  }, 100);
 }
 
 function checkState() {

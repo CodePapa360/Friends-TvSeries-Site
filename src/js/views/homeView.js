@@ -2,7 +2,10 @@ export default function (data) {
   const innerMarkup = data
     .map(
       (curS) => `
-  <a href="#season/${curS.season}" class="season-cards__card">
+  <a href="#season${curS.season}" 
+  data-name="Season ${curS.season}" 
+  data-dest="season${curS.season}" 
+  class="season-cards__card">
   <div class="card-contents">
       <div class="thumbnail">
       <img src="./thumbnails/seasons/season-${curS.season}.jpg" alt="Season ${curS.season}" />

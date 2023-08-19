@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-globals */
 import jsonData from "../data/allData.json";
 import home from "./views/homeView";
 import episodeView from "./views/episodeView";
@@ -16,83 +17,53 @@ const overlay = document.querySelector(".overlay");
 
 /// ///
 
-// Get the content container element where views will be rendered
-const container = document.getElementById("App");
+function getPlaceData(place) {
+  // check the place hash
+  if (place === "home") return home(jsonData);
+  const isEpisode = place.includes("episode");
+  if (isEpisode) return "Episode is not yet available";
 
-function renderContent(data) {
+  const isSeason = place.includes("season");
+  if (isSeason) {
+    const seasonNum = place.match(/(\d+)/);
+    if (seasonNum) {
+      const targetSeason = jsonData.find((sea) => sea.season === +seasonNum[0]);
+
+      return episodeView(targetSeason);
+    }
+  }
+
+  return "";
+}
+
+function updateLayout(place) {
+  const data = getPlaceData(place);
+
+  const container = document.getElementById("App");
+
   container.style.opacity = "0";
-
   setTimeout(() => {
     container.innerHTML = data;
     container.style.opacity = "1";
   }, 100);
 }
 
-// Function to render the home page
-function renderHome() {
-  const data = home(jsonData);
-
-  renderContent(data);
-}
-
-// Function to render a season page
-function renderSeason(seasonId) {
-  // Fetch and render data for the selected season
-  const targetSeason = jsonData.find((season) => season.season === +seasonId);
-
-  const data = episodeView(targetSeason);
-
-  renderContent(data);
-}
-
-// Function to render an episode page
-function renderEpisode(seasonId, episodeId) {
-  // Fetch and render data for the selected episode
-  container.innerHTML = `<h3>Season ${seasonId}, Episode ${episodeId}</h3>`;
-  // ... Fetch and render episode data ...
-}
-
-// Function to render a not found page
-function renderNotFound() {
-  container.innerHTML = "<p>Page not found.</p>";
-}
-
-// Define a routing function
-function route(path) {
-  // Remove the leading "/" and split the path into segments
-  const segments = path.slice(1).split("/");
-
-  // Get the first segment to determine the route
-  // eslint-disable-next-line no-shadow
-  const route = segments[0];
-
-  // Clear the content container
-  container.innerHTML = "";
-
-  // Handle different routes
-  if (route === "") {
-    renderHome();
-  } else if (route === "season") {
-    const seasonId = segments[1];
-    renderSeason(seasonId);
-  } else if (route === "episode") {
-    const seasonId = segments[1];
-    const episodeId = segments[3]; // Assuming the route is "/season/:seasonId/episode/:episodeId"
-    renderEpisode(seasonId, episodeId);
+function checkState() {
+  // do we want to drive our app by state or fragment-identifier(hash) or query?
+  // called when page loads AND after a popstate event
+  // console.log(location);
+  // console.log(history);
+  if (!location.hash) {
+    // default first load
+    history.replaceState(null, "", "");
+    document.title = "Friends TvSeries - Alamin";
+    updateLayout("home");
   } else {
-    renderNotFound();
+    const hash = location.hash.replace("#", "");
+    updateLayout(hash);
+    document.title = hash[0].toUpperCase() + hash.slice(1); // first letter to uppercase needed
   }
 }
-
-// Initial setup: Call the route function when the page loads
-window.addEventListener("load", () => {
-  route(window.location.pathname);
-});
-
-// Listen for changes in the URL (back/forward button or manual changes)
-window.addEventListener("popstate", () => {
-  route(window.location.pathname);
-});
 
 // Function to find the closest ancestor anchor element
 function findAnchor(element) {
@@ -103,19 +74,34 @@ function findAnchor(element) {
   return element;
 }
 
-// Function to handle anchor link clicks
-function handleAnchorClick(event) {
-  const anchor = findAnchor(event.target);
+function appClick(ev) {
+  ev.preventDefault();
+  const anchor = findAnchor(ev.target);
+  if (!anchor) return;
 
-  if (anchor) {
-    event.preventDefault(); // Prevent the default link behavior
-    const href = anchor.getAttribute("href"); // Get the href attribute
-    // Use either pushState or replaceState to update the history
-    // eslint-disable-next-line no-restricted-globals
-    history.pushState(null, "", href);
-    route(href); // Handle the navigation using your routing system
-  }
+  const dest = anchor.getAttribute("data-dest");
+  const name = anchor.getAttribute("data-name");
+  const state = { dest, name };
+  const hash = `#${dest.toLowerCase()}`;
+  history.pushState(state, "", hash);
+  document.title = name;
+  updateLayout(dest.toLowerCase());
 }
 
-// Attach click event listener to the container for event delegation
-container.addEventListener("click", handleAnchorClick);
+function addListeners() {
+  document.getElementById("App").addEventListener("click", appClick);
+
+  window.addEventListener("popstate", checkState);
+  // when the user clicks back or forward
+}
+
+function init() {
+  // when the page loads
+  // check the state or hash value or both
+  checkState(); // when the page loads
+  // add listeners for nav bar
+  // add listeners for popstate OR hashchange
+  addListeners();
+}
+
+document.addEventListener("DOMContentLoaded", init);

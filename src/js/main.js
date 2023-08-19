@@ -69,7 +69,7 @@ function updateLayout(place) {
   setTimeout(() => {
     container.innerHTML = data;
     container.style.opacity = "1";
-  }, 100);
+  }, 10000);
 }
 
 function checkState() {

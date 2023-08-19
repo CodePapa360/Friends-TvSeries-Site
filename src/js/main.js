@@ -20,20 +20,44 @@ const overlay = document.querySelector(".overlay");
 function getPlaceData(place) {
   // check the place hash
   if (place === "home") return home(jsonData);
-  const isEpisode = place.includes("episode");
-  if (isEpisode) return "Episode is not yet available";
 
+  // Episode view logics
+  const isEpisode = place.includes("episode");
+  if (isEpisode) {
+    const [season, episode] = place.split("-");
+    const seasonNum = season.match(/(\d+)/);
+    const episodeNum = episode.match(/(\d+)/);
+
+    if (seasonNum && +seasonNum[0] <= jsonData.length) {
+      const targetSeason = jsonData.find((sea) => sea.season === +seasonNum[0]);
+
+      if (episodeNum && +episodeNum[0] <= targetSeason.episodes.length) {
+        return `
+        <video width="320" height="240" controls>
+        <source src="http://movie.basnetbd.com/Data/TV%20Series/Friends/Season%2001/friends_s01e01_720p_bluray_x264-sujaidr.mkv" type="video/mp4">
+        Your browser does not support the video tag.
+      </video> 
+        
+        `;
+      }
+    }
+
+    // return episodeView();
+    return "Wrong url";
+  }
+
+  // Season view logics
   const isSeason = place.includes("season");
   if (isSeason) {
     const seasonNum = place.match(/(\d+)/);
-    if (seasonNum) {
+    if (seasonNum && +seasonNum[0] <= jsonData.length) {
       const targetSeason = jsonData.find((sea) => sea.season === +seasonNum[0]);
 
       return episodeView(targetSeason);
     }
   }
 
-  return "";
+  return "Not found";
 }
 
 function updateLayout(place) {

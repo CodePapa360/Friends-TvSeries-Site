@@ -33,8 +33,8 @@ function getPlaceData(place) {
 
       if (episodeNum && +episodeNum[0] <= targetSeason.episodes.length) {
         return `
-        <video width="320" height="240" controls>
-        <source src="http://movie.basnetbd.com/Data/TV%20Series/Friends/Season%2001/friends_s01e01_720p_bluray_x264-sujaidr.mkv" type="video/mp4">
+        <video controls>
+        <source src="https://www.didi2.ir/bestsitcomdl/Friends/s01/Friends.S01E05.720p.BluRay.SoftSub.bestsitcom.mkv" type="video/mp4">
         Your browser does not support the video tag.
       </video> 
         

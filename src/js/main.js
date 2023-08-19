@@ -19,6 +19,19 @@ const overlay = document.querySelector(".overlay");
 
 /// ///
 
+function hslVideoPlayer() {
+  // eslint-disable-next-line no-undef
+  if (Hls.isSupported()) {
+    const video = document.getElementById("video");
+    // eslint-disable-next-line no-undef
+    const hls = new Hls();
+    hls.loadSource(video.src);
+    hls.attachMedia(video);
+  } else {
+    alert("Cannot stream HLS, use another video source");
+  }
+}
+
 function getPlaceData(place) {
   // check the place hash
   if (place === "home") return home(jsonData);
@@ -43,6 +56,10 @@ function getPlaceData(place) {
         const targetEpisodeUrl = targetSeasonUrl.episodes.find(
           (ep) => ep.episode === +episodeNum[0],
         );
+
+        setTimeout(() => {
+          hslVideoPlayer();
+        }, 500);
 
         return videoView(targetEpisodeUrl.link);
       }

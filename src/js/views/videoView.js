@@ -1,17 +1,8 @@
-export default function (url) {
+export default function (data) {
   return `
   <video 
-  id="my-video"
-  class="video-js"
-  controls
-  preload="auto"
-  width="640"
-  height="264"
-  data-setup="{}"
-  >
-
-  <source src="${url}" type="video/mp4" />
-
-</video>
+  styel="height: auto; width: 100%;" controls autoplay>
+  <source src="${data.vidUrl}"></source>
+  </video>
     `;
 }

@@ -19,18 +19,27 @@ const overlay = document.querySelector(".overlay");
 
 /// ///
 
-// function hslVideoPlayer() {
-//   // eslint-disable-next-line no-undef
-//   if (Hls.isSupported()) {
-//     const video = document.getElementById("video");
-//     // eslint-disable-next-line no-undef
-//     const hls = new Hls();
-//     hls.loadSource(video.src);
-//     hls.attachMedia(video);
-//   } else {
-//     alert("Cannot stream HLS, use another video source");
-//   }
-// }
+function hslVideoPlayer() {
+  // Function to check if the video element is available and set up HLS player
+  function checkVideoAvailability() {
+    const video = document.getElementById("video");
+
+    if (video) {
+      clearInterval(videoCheckInterval); // Stop the interval once the video element is found
+
+      if (Hls.isSupported()) {
+        const hls = new Hls();
+        hls.loadSource(video.src);
+        hls.attachMedia(video);
+      } else {
+        alert("Cannot stream HLS, use another video source");
+      }
+    }
+  }
+
+  // Start checking for the video element every second
+  const videoCheckInterval = setInterval(checkVideoAvailability, 1000);
+}
 
 function getPlaceData(place) {
   // check the place hash
@@ -77,8 +86,48 @@ function getPlaceData(place) {
   return "Not found";
 }
 
-function updateLayout(place) {
-  const data = getPlaceData(place);
+function checkSeason(place) {}
+
+function checkEpisode(place) {
+  const info = { status: false };
+
+  const isEpisode = place.includes("episode");
+
+  if (!isEpisode) return info;
+
+  const [season, episode] = place.split("-");
+  const seasonNum = season.match(/season(\d+)$/);
+  const episodeNum = episode.match(/episode(\d+)$/);
+  if (!seasonNum || +seasonNum[1] > jsonData.length) return info;
+
+  const targetSeason = jsonData.find((sea) => sea.season === +seasonNum[1]);
+
+  if (!episodeNum || +episodeNum[1] > targetSeason.episodes.length) return info;
+
+  const targetEpisode = targetSeason.episodes.find(
+    (sea) => sea.episode === +episodeNum[1],
+  );
+
+  const targetVidUrlSeason = jsonVideoUrls.find(
+    (sea) => sea.season === +seasonNum[1],
+  ).episodes;
+
+  const videoUrl = targetVidUrlSeason.find(
+    (ep) => ep.episode === +episodeNum[1],
+  ).link;
+
+  return {
+    status: true,
+    data: {
+      season: targetSeason,
+      episode: targetEpisode,
+      vidUrl: videoUrl,
+    },
+  };
+}
+
+function updateLayout(data) {
+  // const data = getPlaceData(place);
 
   const container = document.getElementById("App");
 
@@ -87,6 +136,20 @@ function updateLayout(place) {
     container.innerHTML = data;
     container.style.opacity = "1";
   }, 100);
+}
+
+function verifyPlace(place) {
+  const isSeason = checkSeason(place);
+  const isEpisode = checkEpisode(place);
+
+  if (isEpisode.status) {
+    // temporary code
+    const { data } = isEpisode;
+    const layoutdata = videoView(data);
+
+    updateLayout(layoutdata);
+    // hslVideoPlayer();
+  }
 }
 
 function checkState() {
@@ -101,7 +164,8 @@ function checkState() {
     updateLayout("home");
   } else {
     const hash = location.hash.replace("#", "");
-    updateLayout(hash);
+    // updateLayout(hash);
+    verifyPlace(hash);
     document.title = hash[0].toUpperCase() + hash.slice(1); // first letter to uppercase needed
   }
 }

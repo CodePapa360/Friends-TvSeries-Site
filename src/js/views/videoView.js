@@ -1,5 +1,17 @@
 export default function (url) {
   return `
-  <video style="height: auto; width: 100%;" src="${url}" id="video" controls></video>
+  <video 
+  id="my-video"
+  class="video-js"
+  controls
+  preload="auto"
+  width="640"
+  height="264"
+  data-setup="{}"
+  >
+
+  <source src="${url}" type="video/mp4" />
+
+</video>
     `;
 }

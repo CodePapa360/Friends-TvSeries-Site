@@ -1,14 +1,17 @@
 export default function (data) {
-  const innerMarkup = data.episodes
+  console.log(data);
+  const { season } = data;
+
+  const innerMarkup = season.episodes
     .map(
       (curE) => `
     <a href="#episode${curE.episode}" 
     data-name="Episode ${curE.episode}" 
-    data-dest="season${data.season}-episode${curE.episode}" 
+    data-dest="season${season.season}-episode${curE.episode}" 
     class="episode-cards__card">
       <div class="card-contents">
         <div class="thumbnail">
-          <img src="../../thumbnails/S${data.season}/S${data.season}E${curE.episode}.jpg" alt="Episode ${curE.episode}" />
+          <img src="../../thumbnails/S${season.season}/S${season.season}E${curE.episode}.jpg" alt="Episode ${curE.episode}" />
         </div>
         
         <h2 class="title">${curE.title}</h2>
@@ -22,7 +25,7 @@ export default function (data) {
 
   return `
       <div class="container">
-        <h2 class="primary-heading-episodde">Friends: Season ${data.season}</h2>
+        <h2 class="primary-heading-episodde">Friends: Season ${season.season}</h2>
 
         <section class="episode-cards">
             ${innerMarkup}

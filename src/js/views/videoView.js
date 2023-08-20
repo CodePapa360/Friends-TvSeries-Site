@@ -1,8 +1,9 @@
 export default function (data) {
   return `
-  <video 
-  styel="height: auto; width: 100%;" controls autoplay>
-  <source src="${data.vidUrl}"></source>
+  <video id="video" 
+    width='480px' height='360px' controls autoplay
+    src="${data.vidUrl}">
   </video>
+  <p>Season ${data.season.season} Episode ${data.episode.episode}</p>
     `;
 }

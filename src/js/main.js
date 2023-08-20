@@ -19,74 +19,24 @@ const overlay = document.querySelector(".overlay");
 
 /// ///
 
-function hslVideoPlayer() {
-  // Function to check if the video element is available and set up HLS player
-  function checkVideoAvailability() {
-    const video = document.getElementById("video");
+function checkSeason(place) {
+  const info = { status: false };
 
-    if (video) {
-      clearInterval(videoCheckInterval); // Stop the interval once the video element is found
-
-      if (Hls.isSupported()) {
-        const hls = new Hls();
-        hls.loadSource(video.src);
-        hls.attachMedia(video);
-      } else {
-        alert("Cannot stream HLS, use another video source");
-      }
-    }
-  }
-
-  // Start checking for the video element every second
-  const videoCheckInterval = setInterval(checkVideoAvailability, 1000);
-}
-
-function getPlaceData(place) {
-  // check the place hash
-  if (place === "home") return home(jsonData);
-
-  // Episode view logics
-  const isEpisode = place.includes("episode");
-  if (isEpisode) {
-    const [season, episode] = place.split("-");
-    const seasonNum = season.match(/(\d+)/);
-    const episodeNum = episode.match(/(\d+)/);
-
-    if (seasonNum && +seasonNum[0] <= jsonData.length) {
-      const targetSeason = jsonData.find((sea) => sea.season === +seasonNum[0]);
-
-      if (episodeNum && +episodeNum[0] <= targetSeason.episodes.length) {
-        const targetSeasonUrl = jsonVideoUrls.find(
-          (sea) => sea.season === +seasonNum[0],
-        );
-
-        const targetEpisodeUrl = targetSeasonUrl.episodes.find(
-          (ep) => ep.episode === +episodeNum[0],
-        );
-
-        return videoView(targetEpisodeUrl.link);
-      }
-    }
-
-    // return episodeView();
-    return "Wrong url";
-  }
-
-  // Season view logics
   const isSeason = place.includes("season");
-  if (isSeason) {
-    const seasonNum = place.match(/(\d+)/);
-    if (seasonNum && +seasonNum[0] <= jsonData.length) {
-      const targetSeason = jsonData.find((sea) => sea.season === +seasonNum[0]);
+  if (!isSeason) return info;
 
-      return episodeView(targetSeason);
-    }
-  }
+  const seasonNum = place.match(/season(\d+)$/);
+  if (!seasonNum || +seasonNum[1] > jsonData.length) return info;
 
-  return "Not found";
+  const targetSeason = jsonData.find((sea) => sea.season === +seasonNum[1]);
+
+  return {
+    status: true,
+    data: {
+      season: targetSeason,
+    },
+  };
 }
-
-function checkSeason(place) {}
 
 function checkEpisode(place) {
   const info = { status: false };
@@ -138,8 +88,13 @@ function updateLayout(data) {
   }, 100);
 }
 
+// eslint-disable-next-line consistent-return
 function verifyPlace(place) {
-  const isSeason = checkSeason(place);
+  if (place === "home") {
+    const data = home(jsonData);
+    return updateLayout(data);
+  }
+
   const isEpisode = checkEpisode(place);
 
   if (isEpisode.status) {
@@ -147,8 +102,17 @@ function verifyPlace(place) {
     const { data } = isEpisode;
     const layoutdata = videoView(data);
 
-    updateLayout(layoutdata);
+    return updateLayout(layoutdata);
     // hslVideoPlayer();
+  }
+
+  const isSeason = checkSeason(place);
+
+  if (isSeason.status) {
+    const { data } = isSeason;
+
+    const layoutdata = episodeView(data);
+    return updateLayout(layoutdata);
   }
 }
 
@@ -161,7 +125,8 @@ function checkState() {
     // default first load
     history.replaceState(null, "", "");
     document.title = "Friends TvSeries - Alamin";
-    updateLayout("home");
+    // updateLayout("home");
+    verifyPlace("home");
   } else {
     const hash = location.hash.replace("#", "");
     // updateLayout(hash);
@@ -190,7 +155,8 @@ function appClick(ev) {
   const hash = `#${dest.toLowerCase()}`;
   history.pushState(state, "", hash);
   document.title = name;
-  updateLayout(dest.toLowerCase());
+  verifyPlace(dest.toLowerCase());
+  // updateLayout(dest.toLowerCase());
 }
 
 function addListeners() {

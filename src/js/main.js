@@ -18,6 +18,12 @@ const overlay = document.querySelector(".overlay");
 );
 
 /// ///
+let player;
+function startPlayer() {
+  setTimeout(() => {
+    player = new Plyr("#player");
+  }, 500);
+}
 
 function checkSeason(place) {
   const info = { status: false };
@@ -102,7 +108,8 @@ function verifyPlace(place) {
     const { data } = isEpisode;
     const layoutdata = videoView(data);
 
-    return updateLayout(layoutdata);
+    updateLayout(layoutdata);
+    return startPlayer();
     // hslVideoPlayer();
   }
 

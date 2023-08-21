@@ -1,6 +1,6 @@
 export default function (data) {
   return `
-  <video id="video" 
+  <video id="video"  playsinline
     width='480px' height='360px' controls autoplay
     src="${data.vidUrl}">
   </video>

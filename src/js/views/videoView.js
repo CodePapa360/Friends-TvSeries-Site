@@ -4,15 +4,16 @@ export default function (data) {
     style="width:auto; height: 100%;"  controls autoplay
     src="${data.vidUrl}">
   </video>
-  <p>Season ${data.season.season} Episode ${data.episode.episode}</p>
+
   -->
 
-  <video id="player" playsinline controls data-poster="">
+  <video id="player" playsinline controls data-poster="../../thumbnails/S${data.season.season}/S${data.season.season}E${data.episode.episode}.jpg">
   <source
     src="${data.vidUrl}"
     type="video/mp4"
   />
 
 </video>
+<p>Season ${data.season.season} Episode ${data.episode.episode}</p>
     `;
 }

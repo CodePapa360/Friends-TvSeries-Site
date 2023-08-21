@@ -18,11 +18,11 @@ const overlay = document.querySelector(".overlay");
 );
 
 /// ///
-let player;
+
 function startPlayer() {
   setTimeout(() => {
-    player = new Plyr("#player");
-  }, 500);
+    const player = new Plyr("#player");
+  }, 100);
 }
 
 function checkSeason(place) {

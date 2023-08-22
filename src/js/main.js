@@ -1,4 +1,7 @@
 /* eslint-disable no-restricted-globals */
+/* eslint-disable import/no-extraneous-dependencies */
+import videojs from "video.js";
+import "video.js/dist/video-js.min.css";
 import jsonData from "../data/allData.json";
 import jsonVideoUrls from "../data/videoUrls.json";
 import home from "./views/homeView";
@@ -8,6 +11,7 @@ import videoView from "./views/videoView";
 const navMenu = document.querySelector(".nav");
 const btnMenu = document.querySelector(".hamburger-menu");
 const overlay = document.querySelector(".overlay");
+let player;
 
 // Navigation menu
 [btnMenu, overlay].forEach((el) =>
@@ -18,12 +22,6 @@ const overlay = document.querySelector(".overlay");
 );
 
 /// ///
-
-function startPlayer() {
-  setTimeout(() => {
-    const player = new Plyr("#player");
-  }, 100);
-}
 
 function checkSeason(place) {
   const info = { status: false };
@@ -82,6 +80,28 @@ function checkEpisode(place) {
   };
 }
 
+function renderVideoView(data) {
+  const layoutdata = videoView(data);
+  const container = document.getElementById("App");
+
+  container.style.opacity = "0";
+  setTimeout(() => {
+    container.innerHTML = layoutdata;
+
+    if (player) {
+      // Dispose of the existing player instance
+      player.dispose();
+    }
+
+    // Initialize the player with the new content
+    player = videojs("my-player", {
+      techOrder: ["html5"],
+    });
+
+    container.style.opacity = "1";
+  }, 100);
+}
+
 function updateLayout(data) {
   // const data = getPlaceData(place);
 
@@ -106,11 +126,9 @@ function verifyPlace(place) {
   if (isEpisode.status) {
     // temporary code
     const { data } = isEpisode;
-    const layoutdata = videoView(data);
-
-    updateLayout(layoutdata);
-    return startPlayer();
-    // hslVideoPlayer();
+    renderVideoView(data);
+    // eslint-disable-next-line consistent-return
+    return;
   }
 
   const isSeason = checkSeason(place);

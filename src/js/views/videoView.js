@@ -1,19 +1,18 @@
 export default function (data) {
   return `
- <!-- <video id="video"  playsinline
-    style="width:auto; height: 100%;"  controls autoplay
-    src="${data.vidUrl}">
-  </video>
-
-  -->
-
-  <video id="player" playsinline controls data-poster="../../thumbnails/S${data.season.season}/S${data.season.season}E${data.episode.episode}.jpg">
-  <source
-    src="${data.vidUrl}"
-    type="video/mp4"
-  />
-
-</video>
-<p>Season ${data.season.season} Episode ${data.episode.episode}</p>
-    `;
+  <div style="height:auto; width: 100%;">
+    <video
+      playsinline
+      id="my-player"
+      class="video-js vjs-default-skin"
+      controls
+      poster="../../thumbnails/S${data.season.season}/S${data.season.season}E${data.episode.episode}.jpg"
+      preload="auto"
+      data-setup='{"techOrder": ["html5", "hls"]}'>
+      <source src="${data.vidUrl}" type="application/x-mpegURL">
+      
+      <p class="vjs-no-js">To view this video, please enable JavaScript, and consider upgrading to a web browser that supports HTML5 video</p>
+    </video>
+  </div>
+  `;
 }

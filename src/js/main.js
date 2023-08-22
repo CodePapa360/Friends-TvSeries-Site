@@ -22,7 +22,6 @@ let player;
 );
 
 /// ///
-
 function checkSeason(place) {
   const info = { status: false };
 

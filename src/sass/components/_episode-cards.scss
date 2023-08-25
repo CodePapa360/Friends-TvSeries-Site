@@ -71,5 +71,26 @@
         opacity: 0.5;
       }
     }
+
+    .card-contents.playing {
+      position: relative;
+      outline: 1px solid rgba(191, 0, 230, 0.9);
+
+      &::after {
+        content: "Playing";
+        position: absolute;
+        top: 0.5rem;
+        right: 0.5rem;
+        background: linear-gradient(
+          to bottom right,
+          rgba(0, 228, 245, 0.9),
+          rgba(191, 0, 230, 0.9),
+          rgba(143, 252, 0, 0.9)
+        );
+        border-radius: 5px;
+        padding: 0.1rem 0.5rem;
+        font-size: 1.5rem;
+      }
+    }
   }
 }

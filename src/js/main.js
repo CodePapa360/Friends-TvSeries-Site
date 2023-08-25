@@ -84,6 +84,7 @@ function renderVideoView(data) {
   const container = document.getElementById("App");
 
   container.style.opacity = "0";
+  window.scrollTo(0, 0);
   setTimeout(() => {
     container.innerHTML = layoutdata;
 
@@ -96,7 +97,6 @@ function renderVideoView(data) {
     player = videojs("my-player", {
       techOrder: ["html5"],
     });
-
     container.style.opacity = "1";
   }, 100);
 }
@@ -109,6 +109,7 @@ function updateLayout(data) {
   container.style.opacity = "0";
   setTimeout(() => {
     container.innerHTML = data;
+    window.scrollTo(0, 0);
     container.style.opacity = "1";
   }, 100);
 }

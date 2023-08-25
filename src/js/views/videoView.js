@@ -1,5 +1,4 @@
 export default function (data) {
-  console.log(data);
   const innerMarkup = data.season.episodes
     .map(
       (curE) => `

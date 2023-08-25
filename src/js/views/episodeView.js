@@ -1,5 +1,4 @@
 export default function (data) {
-  console.log(data);
   const { season } = data;
 
   const innerMarkup = season.episodes

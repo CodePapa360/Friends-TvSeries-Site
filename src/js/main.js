@@ -1,25 +1,25 @@
 /* eslint-disable no-restricted-globals */
-/* eslint-disable import/no-extraneous-dependencies */
-import videojs from "video.js";
 import "video.js/dist/video-js.min.css";
+import videojs from "video.js";
 import jsonData from "../data/allData.json";
 import jsonVideoUrls from "../data/videoUrls.json";
-import home from "./views/homeView";
+import homeView from "./views/homeView";
 import episodeView from "./views/episodeView";
 import videoView from "./views/videoView";
+import aboutView from "./views/aboutView";
 
 const navMenu = document.querySelector(".nav");
 const btnMenu = document.querySelector(".hamburger-menu");
 const overlay = document.querySelector(".overlay");
 let player;
 
+function toggleNav() {
+  navMenu.classList.toggle("open");
+  overlay.classList.toggle("open");
+}
+
 // Navigation menu
-[btnMenu, overlay].forEach((el) =>
-  el.addEventListener("click", () => {
-    navMenu.classList.toggle("open");
-    overlay.classList.toggle("open");
-  }),
-);
+[btnMenu, overlay].forEach((el) => el.addEventListener("click", toggleNav));
 
 /// ///
 function checkSeason(place) {
@@ -117,8 +117,15 @@ function updateLayout(data) {
 // eslint-disable-next-line consistent-return
 function verifyPlace(place) {
   if (place === "home") {
-    const data = home(jsonData);
-    return updateLayout(data);
+    const data = homeView(jsonData);
+    updateLayout(data);
+    return;
+  }
+
+  if (place === "about") {
+    const data = aboutView();
+    updateLayout(data);
+    return;
   }
 
   const isEpisode = checkEpisode(place);
@@ -137,24 +144,20 @@ function verifyPlace(place) {
     const { data } = isSeason;
 
     const layoutdata = episodeView(data);
-    return updateLayout(layoutdata);
+    updateLayout(layoutdata);
   }
 }
 
 function checkState() {
   // do we want to drive our app by state or fragment-identifier(hash) or query?
   // called when page loads AND after a popstate event
-  // console.log(location);
-  // console.log(history);
   if (!location.hash) {
     // default first load
     history.replaceState(null, "", "");
     document.title = "Friends TvSeries - Alamin";
-    // updateLayout("home");
     verifyPlace("home");
   } else {
     const hash = location.hash.replace("#", "");
-    // updateLayout(hash);
     verifyPlace(hash);
     document.title = hash[0].toUpperCase() + hash.slice(1); // first letter to uppercase needed
   }
@@ -180,8 +183,38 @@ function appClick(ev) {
   const hash = `#${dest.toLowerCase()}`;
   history.pushState(state, "", hash);
   document.title = name;
+  verifyPlace(dest);
+}
+
+function navSeasonSelection() {
+  const index = this.selectedIndex;
+  // eslint-disable-next-line no-useless-return
+  if (!index) return;
+
+  const dest = `season${index}`;
+  const name = `Season ${index}`;
+  const state = { dest, name };
+  const hash = `#${dest}`;
+  history.pushState(state, "", hash);
+  document.title = name;
   verifyPlace(dest.toLowerCase());
-  // updateLayout(dest.toLowerCase());
+
+  toggleNav();
+}
+
+function navLinkClick(e) {
+  e.preventDefault();
+
+  const { hash } = e.target;
+  const dest = hash.replace("#", "");
+  const name = dest[0].toUpperCase() + dest.slice(1);
+  const state = { dest, name };
+
+  history.pushState(state, "", hash);
+  document.title = name;
+  verifyPlace(dest);
+
+  toggleNav();
 }
 
 function addListeners() {
@@ -189,6 +222,14 @@ function addListeners() {
 
   window.addEventListener("popstate", checkState);
   // when the user clicks back or forward
+
+  document
+    .getElementById("season-nav")
+    .addEventListener("change", navSeasonSelection);
+
+  document
+    .querySelectorAll(".nav-link")
+    .forEach((link) => link.addEventListener("click", navLinkClick));
 }
 
 function init() {

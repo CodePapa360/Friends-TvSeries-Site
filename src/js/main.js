@@ -1,4 +1,5 @@
 /* eslint-disable no-restricted-globals */
+import "./utils/darkMode";
 import "video.js/dist/video-js.min.css";
 import videojs from "video.js";
 import jsonData from "../data/allData.json";

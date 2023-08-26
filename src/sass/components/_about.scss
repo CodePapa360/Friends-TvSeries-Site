@@ -1,0 +1,42 @@
+.about-container {
+  //   text-align: center;
+  max-width: 50rem;
+  margin: auto;
+  padding: 1rem;
+
+  section {
+    margin-bottom: 1.5rem;
+  }
+
+  .about-profile-photo {
+    max-width: 15rem;
+    margin: auto;
+    margin-bottom: 1rem;
+  }
+
+  .primary-heading {
+    font-size: 1.5rem;
+    border-bottom: 2px solid var(--clr-primary);
+    width: max-content;
+    // margin: auto;
+    margin-bottom: 1rem;
+    color: var(--clr-primary);
+  }
+
+  .secondary-heading {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    color: var(--clr-primary);
+    opacity: 0.9;
+    margin-left: 1.5rem;
+  }
+
+  .explanation {
+    margin-bottom: 1rem;
+  }
+
+  a {
+    color: var(--clr-primary);
+    text-decoration: underline;
+  }
+}

@@ -41,6 +41,7 @@
       color: var(--clr-white);
       display: block;
       height: 100%;
+      box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
 
       .thumbnail {
         border-radius: 5px;
@@ -79,6 +80,7 @@
       &::after {
         content: "Playing";
         position: absolute;
+        color: white;
         top: 0.5rem;
         right: 0.5rem;
         background: linear-gradient(

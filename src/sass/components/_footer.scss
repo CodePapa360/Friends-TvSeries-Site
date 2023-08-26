@@ -11,6 +11,7 @@
     justify-content: space-between;
     padding: 1rem;
     gap: 0.5rem;
+    box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.2);
 
     @media screen and (min-width: $bp-small) {
       flex-direction: row;
@@ -56,7 +57,7 @@
         img {
           height: 2rem;
           width: 2rem;
-          filter: invert(80%);
+          filter: var(--filter);
           transition: filter 0.2s ease;
         }
       }

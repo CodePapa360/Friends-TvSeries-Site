@@ -8,6 +8,7 @@
     justify-content: space-between;
     padding: 1rem;
     position: relative;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 
     @media screen and (min-width: $bp-small) {
       padding: 1rem 2rem;
@@ -28,7 +29,7 @@
       }
 
       img {
-        filter: invert(90%);
+        filter: var(--filter);
       }
     }
 
@@ -47,20 +48,7 @@
         display: block;
         position: relative;
         transform: translateY(0);
-      }
-
-      .close-menu {
-        height: 2rem;
-        width: 2rem;
-        filter: invert(90%);
-        position: absolute;
-        top: 1rem;
-        right: 1rem;
-        cursor: pointer;
-
-        @media screen and (min-width: $bp-small) {
-          display: none;
-        }
+        width: auto;
       }
 
       .nav-links {

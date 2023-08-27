@@ -1,4 +1,4 @@
-(function () {
+export default function () {
   const darkModeToggle = document.getElementById("dark-mode-toggle");
   const root = document.documentElement;
   const darkMode = function () {
@@ -11,4 +11,4 @@
     darkModeToggle.checked = localStorage.getItem("darkMode") === "on";
     darkMode();
   });
-})();
+}

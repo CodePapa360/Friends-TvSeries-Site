@@ -7,6 +7,7 @@ export default function (data) {
   const layoutdata = videoView(data);
   const container = document.getElementById("App");
 
+  container.style.transform = "translateX(1rem)";
   container.style.opacity = "0";
   window.scrollTo(0, 0);
   setTimeout(() => {
@@ -21,6 +22,7 @@ export default function (data) {
     player = videojs("my-player", {
       techOrder: ["html5"],
     });
+    container.style.transform = "translateX(0)";
     container.style.opacity = "1";
   }, 100);
 }

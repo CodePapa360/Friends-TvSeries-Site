@@ -41,34 +41,34 @@ body {
 
 #App {
   opacity: 1;
-  transition: opacity 0.1s ease;
+  // transform: skewX(15deg);
+  transition: all 0.1s ease;
 }
 
-//
-// ::selection {
-//   background-color: var(--light-blue);
-//   color: var(--white);
-// }
+::selection {
+  background-color: var(--clr-primary);
+  color: black;
+}
 
-// /* Works on Firefox */
-// * {
-//   scrollbar-width: thin;
-//   scrollbar-color: var(--light-blue) var(--bg-light-grayish-cyan);
-// }
+/* Works on Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--clr-primary) var(--clr-bg-secondary);
+}
 
-// /* Works on Chrome, Edge, and Safari */
-// *::-webkit-scrollbar {
-//   width: 12px;
-// }
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 12px;
+}
 
-// *::-webkit-scrollbar-track {
-//   background: var(--bg-light-grayish-cyan);
-//   width: 12px;
-// }
+*::-webkit-scrollbar-track {
+  background: var(--clr-bg-secondary);
+  width: 12px;
+}
 
-// *::-webkit-scrollbar-thumb {
-//   background-color: var(--light-blue);
-//   border-radius: 20px;
-//   border: 3px solid var(--bg-light-grayish-cyan);
-// }
+*::-webkit-scrollbar-thumb {
+  background-color: var(--clr-primary);
+  border-radius: 20px;
+  border: 3px solid var(--clr-bg-secondary);
+}
 

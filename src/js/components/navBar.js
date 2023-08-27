@@ -1,7 +1,7 @@
 /* eslint-disable no-restricted-globals */
 import verifyPlace from "../utils/verifyPlace";
 
-class NavBar {
+export default class {
   constructor() {
     this.navMenu = document.querySelector(".nav");
     this.btnMenu = document.querySelector(".hamburger-menu");
@@ -14,11 +14,11 @@ class NavBar {
     this.navSeasonSelection = this.navSeasonSelection.bind(this);
 
     [this.btnMenu, this.overlay].forEach((el) =>
-      el.addEventListener("click", this.toggleNav),
+      el.addEventListener("click", this.toggleNav.bind(this)),
     );
 
     this.navLink.forEach((link) =>
-      link.addEventListener("click", this.navLinkClick),
+      link.addEventListener("click", this.navLinkClick.bind(this)),
     );
 
     // Use an arrow function to capture the correct `this` context
@@ -44,7 +44,7 @@ class NavBar {
     document.title = name;
 
     // console.log(dest, name, hash);
-    verifyPlace.verify(dest.toLowerCase());
+    verifyPlace(dest.toLowerCase());
 
     this.toggleNav();
   }
@@ -59,10 +59,8 @@ class NavBar {
 
     history.pushState(state, "", hash);
     document.title = name;
-    verifyPlace.verify(dest);
+    verifyPlace(dest);
 
     this.toggleNav();
   }
 }
-
-export default new NavBar();

@@ -3,7 +3,7 @@
 
   .video-container {
     position: relative;
-    padding: 0.1rem;
+    padding: 0.5rem;
     background-color: var(--clr-light-gray);
     background: linear-gradient(
       to bottom right,
@@ -21,7 +21,7 @@
     #my-player {
       width: 100%;
       height: auto;
-      border-radius: 9px;
+      border-radius: 5px;
       overflow: hidden;
     }
 

@@ -1,19 +1,20 @@
+/* eslint-disable no-new */
 /* eslint-disable no-restricted-globals */
 import "video.js/dist/video-js.min.css";
 import verifyPlace from "./utils/verifyPlace";
 import darkMode from "./utils/darkMode";
+import NavBar from "./components/navBar";
 
 function checkState() {
-  // do we want to drive our app by state or fragment-identifier(hash) or query?
   // called when page loads AND after a popstate event
   if (!location.hash) {
     // default first load
     history.replaceState(null, "", "");
     document.title = "Friends TvSeries - Alamin";
-    verifyPlace.verify("home");
+    verifyPlace("home");
   } else {
     const hash = location.hash.replace("#", "");
-    verifyPlace.verify(hash);
+    verifyPlace(hash);
     document.title = hash[0].toUpperCase() + hash.slice(1); // first letter to uppercase needed
   }
 }
@@ -38,7 +39,7 @@ function appClick(ev) {
   const hash = `#${dest.toLowerCase()}`;
   history.pushState(state, "", hash);
   document.title = name;
-  verifyPlace.verify(dest);
+  verifyPlace(dest);
 }
 
 function addListeners() {
@@ -58,6 +59,9 @@ function init() {
 
   // Start dark mode functionality
   darkMode();
+
+  // Start navBar
+  new NavBar();
 }
 
 document.addEventListener("DOMContentLoaded", init);

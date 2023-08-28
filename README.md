@@ -6,7 +6,7 @@
 
 <h2 align="center">
 
-[🚀Live Website](https://job-listings-with-filtering-codepapa360.vercel.app)
+[🚀Live Website](https://friends-tv-series-codepapa360.vercel.app)
 
 </h2>
 
@@ -26,7 +26,7 @@
 </p>
 
 <!-- Screenshot -->
-<a align="center" href="https://friends-tv-series-codepapa360.netlify.app">
+<a align="center" href="https://friends-tv-series-codepapa360.vercel.app">
 
 ![Screenshot](./screenshots/friends-tv-series-preview-codepapa360.jpg)
 
@@ -97,5 +97,5 @@ Feel free to contact me with any questions or feedback!
 
 ## License
 
-This project is licensed under the [MIT](https://github.com/CodePapa360/Job-listings-with-filtering/blob/main/LICENSE.md) License - see the LICENSE file for details.
+This project is licensed under the [MIT](https://github.com/CodePapa360/Friends-TvSeries-Site/blob/main/LICENSE.md) License - see the LICENSE file for details.
 

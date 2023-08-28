@@ -1,6 +1,6 @@
 {
-  "name": "friends-tv-series",
-  "description": "Friends TV Series",
+  "name": "friends-tv-series-site",
+  "description": "Friends TV Series Site",
   "private": true,
   "version": "1.0.0",
   "type": "module",
@@ -23,3 +23,4 @@
     "vite": "^4.4.5"
   }
 }
+

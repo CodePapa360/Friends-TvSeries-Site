@@ -8,7 +8,7 @@ export default function (data) {
   class="season-cards__card">
   <div class="card-contents">
       <div class="thumbnail">
-      <img src="./thumbnails/seasons/season-${curS.season}.jpg" alt="Season ${curS.season}" />
+      <img src="../../thumbnails/seasons/season-${curS.season}.jpg" alt="Season ${curS.season}" />
       </div>
       <h2 class="title">Season ${curS.season}</h2>
       <span class="release-date">${curS.release}</span>

@@ -27,7 +27,7 @@
 
 </a>
 
-Welcome to the Friends TV Series website! This project emerged from a simple desire: to create an ad-free platform for enjoying every episode of the iconic show "Friends." Fed up with ads and pop-ups on other streaming sites, I crafted a clean, user-friendly space for fellow fans to enjoy the series uninterrupted.
+Welcome to the Friends TV Series website! This project emerged from a simple desire: to create an ad-free platform for enjoying every episode of the iconic show "Friends." Fed up with ads and pop-ups on other streaming sites, I crafted a clean, user-friendly space for me and fellow fans to enjoy the series uninterrupted.
 
 ## Table of Contents
 
@@ -53,13 +53,13 @@ This project is a single-page website that provides a user-friendly and ad-free 
 
 The website features dynamic content loading, allowing users to navigate through different seasons and episodes seamlessly. Each episode is presented as a card with a thumbnail, title, and release date. Clicking on an episode card updates the content on the page without requiring a full page reload.
 
-### Dark Mode
-
-Dark mode enhances the user experience by providing an alternative color scheme that is easier on the eyes, especially in low-light conditions. Users can toggle between light and dark mode, and their preference is remembered using local storage.
-
 ### Custom Routing Mechanism
 
 One of the significant challenges in building this website was implementing a custom routing mechanism for a single-page application without using any frameworks or libraries. The routing system allows users to navigate between different sections of the website while maintaining a smooth and fluid user experience.
+
+### Dark Mode
+
+Dark mode enhances the user experience by providing an alternative color scheme that is easier on the eyes, especially in low-light conditions. Users can toggle between light and dark mode, and their preference is remembered using local storage.
 
 ## Technical Details
 

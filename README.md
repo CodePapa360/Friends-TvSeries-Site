@@ -65,7 +65,7 @@ One of the significant challenges in building this website was implementing a cu
 
 ### Implementation Challenges
 
-One of the most challenging aspects of this project was creating a custom routing mechanism. Without the use of frameworks or libraries, I had to carefully manage the state of the application and ensure that the correct content was displayed when the user navigated between different sections.
+One of the most challenging aspects of this project was developing a custom routing mechanism. Without utilizing frameworks or libraries, I needed to meticulously handle the application's state, ensuring accurate content display as users moved across sections. I utilized JSON files to manage season and episode data. Additionally, a separate JSON file stored the video URLs, allowing flexibility for future updates. These URLs were collected from sflix.com in the m3u8 format. I sourced the video URLs from platforms like sflix.com, where the videos are available in the m3u8 format.
 
 ### No Frameworks or Libraries
 

@@ -20,11 +20,6 @@
 
 </div>
 
-<!-- Brief -->
-<p align="center">
-
-</p>
-
 <!-- Screenshot -->
 <a align="center" href="https://friends-tv-series-codepapa360.vercel.app">
 

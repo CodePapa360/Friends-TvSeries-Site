@@ -1,6 +1,6 @@
 <div align="center">
 
-# Friends - Tv Series
+# Friends TV Series Website
 
 </div>
 
@@ -28,47 +28,65 @@
 <!-- Screenshot -->
 <a align="center" href="https://friends-tv-series-codepapa360.netlify.app">
 
-![Screenshot](./screenshots/friends-tv-series-preview-codepapa360.png)
+![Screenshot](./screenshots/friends-tv-series-preview-codepapa360.jpg)
 
 </a>
 
-## Key Features
+Welcome to the Friends TV Series website! This project emerged from a simple desire: to create an ad-free platform for enjoying every episode of the iconic show "Friends." Fed up with ads and pop-ups on other streaming sites, I crafted a clean, user-friendly space for fellow fans to enjoy the series uninterrupted.
 
-## Built with
+## Table of Contents
 
-- Vanilla JavaScript
-- Sass
-- HTML5
-- Mobile-first workflow
-- [Vite](https://vitejs.dev/) - A JavaScript module bundler and development server.
+- [Project Overview](#project-overview)
+- [Features](#features)
+  - [Dynamic Content Loading](#dynamic-content-loading)
+  - [Custom Routing Mechanism](#custom-routing-mechanism)
+  - [Dark Mode](#dark-mode)
+- [Technical Details](#technical-details)
+  - [Implementation Challenges](#implementation-challenges)
+  - [No Frameworks or Libraries](#no-frameworks-or-libraries)
+- [How It Started](#how-it-started)
+- [Contributing](#contributing)
+- [Contact](#contact)
 
-## Installation
+## Project Overview
 
-- Clone this repo:
+This project is a single-page website that provides a user-friendly and ad-free platform to watch episodes of the "Friends" TV series. The idea behind this project was born out of frustration with other streaming sites that bombard users with ads and pop-ups, disrupting the viewing experience. The website aims to provide a clean and enjoyable way to watch the series, while also serving as a practical way to enhance JavaScript skills.
 
-```sh
-git clone https://github.com/CodePapa360/Job-listings-with-filtering.git
-```
+## Features
 
-- Install dependencies:
+### Dynamic Content Loading
 
-```sh
-npm install
-```
+The website features dynamic content loading, allowing users to navigate through different seasons and episodes seamlessly. Each episode is presented as a card with a thumbnail, title, and release date. Clicking on an episode card updates the content on the page without requiring a full page reload.
 
-- Build command:
+### Dark Mode
 
-```sh
-npm run build
-```
+Dark mode enhances the user experience by providing an alternative color scheme that is easier on the eyes, especially in low-light conditions. Users can toggle between light and dark mode, and their preference is remembered using local storage.
 
-- Live server:
+### Custom Routing Mechanism
 
-```sh
-npm start
-```
+One of the significant challenges in building this website was implementing a custom routing mechanism for a single-page application without using any frameworks or libraries. The routing system allows users to navigate between different sections of the website while maintaining a smooth and fluid user experience.
 
-## Author
+## Technical Details
+
+### Implementation Challenges
+
+One of the most challenging aspects of this project was creating a custom routing mechanism. Without the use of frameworks or libraries, I had to carefully manage the state of the application and ensure that the correct content was displayed when the user navigated between different sections.
+
+### No Frameworks or Libraries
+
+To further enhance my JavaScript skills, I chose to build the entire website without relying on any frameworks or libraries. This decision allowed me to gain a deep understanding of how various components work together, from event handling to dynamic content loading.
+
+## How It Started
+
+This project began when I started watching episodes of the "Friends" TV series online and became frustrated with the abundance of ads and pop-ups on various streaming platforms. Inspired by the desire to create a better viewing experience and hone my web development skills, I embarked on building this website from scratch.
+
+## Contributing
+
+This project was primarily developed as a personal learning experience. However, if you'd like to contribute, feel free to fork the repository, make improvements, and submit a pull request.
+
+## Contact
+
+Feel free to contact me with any questions or feedback!
 
 <b>👤 Alamin</b>
 
@@ -77,8 +95,7 @@ npm start
 - Frontend Mentor - [@CodePapa360](https://www.frontendmentor.io/profile/CodePapa360)
 - Github: [@CodePapa360](https://github.com/codepapa360)
 
-Feel free to contact me with any questions or feedback!
-
 ## License
 
 This project is licensed under the [MIT](https://github.com/CodePapa360/Job-listings-with-filtering/blob/main/LICENSE.md) License - see the LICENSE file for details.
+
